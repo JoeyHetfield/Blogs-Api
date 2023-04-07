@@ -10,6 +10,7 @@ const configJWT = {
 
 const createToken = (payload) => {
   const token = jwt.sign(payload, secretKey, configJWT);
+  console.log(token);
   return token;
 };
 

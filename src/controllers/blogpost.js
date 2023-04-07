@@ -9,6 +9,12 @@ const createPost = async (req, res) => {
   res.status(201).json(post);
 };
 
+const getAllPosts = async (req, res) => {
+  const posts = await blogPostService.getAllPosts();
+  res.status(200).json(posts);
+};
+
 module.exports = {
   createPost,
+  getAllPosts,
 };

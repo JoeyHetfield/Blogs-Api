@@ -21,6 +21,22 @@ const createPost = async (title, content, userId, categoryIds) => {
   return post;
 };
 
+const getAllPosts = async () => { 
+  const posts = await BlogPost.findAll({
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, 
+        as: 'categories', 
+      through: { attributes: [
+        'postId',
+      ] } },
+    ],
+  });
+  if (!posts) throw new ErrorFile('Posts not found', 404);
+  return posts;
+};
+
 module.exports = {
   createPost,
+  getAllPosts,
 };

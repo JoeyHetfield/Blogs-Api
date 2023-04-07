@@ -1,7 +1,7 @@
-const validateBody = require('../utils/joi');
+const { validateLoginEnter } = require('../utils/joi');
 
 module.exports = (req, res, next) => {
-  const { error } = validateBody(req.body);
+  const { error } = validateLoginEnter(req.body);
   if (error) return res.status(400).json({ message: error.message });
   next();
 };

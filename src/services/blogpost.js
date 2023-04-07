@@ -52,8 +52,22 @@ const getOnePost = async (id) => {
   return post;
 };
 
+const updatePost = async (id, title, content, userId) => {
+  const isThePost = await BlogPost.findOne({ where: { id } });
+  if (!isThePost) throw new ErrorFile('Post does not exist', 404);
+
+  if (isThePost.id !== userId) throw new ErrorFile('Unauthorized user', 401);
+
+  await BlogPost.update({ title, content, updated: new Date() }, { where: { id } });
+
+  const updated = await getOnePost(id);
+
+  return updated;
+};
+
 module.exports = {
   createPost,
   getAllPosts,
   getOnePost,
+  updatePost,
 };

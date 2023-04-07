@@ -60,9 +60,22 @@ const validateUserCreate = (body) =>
     }),
   }).validate(body);
 
+  const validateUpdatePost = (body) =>
+  Joi.object({
+    title: Joi.string().required().messages({
+      'string.required': requiredField,
+      'string.empty': requiredField,
+    }),
+    content: Joi.string().required().messages({
+      'string.required': requiredField,
+      'string.empty': requiredField,
+    }),
+  }).validate(body);
+
 module.exports = {
   validateUserCreate,
   validateLoginEnter,
   validateCategoryCreate,
   validateBlogPostCreate,
+  validateUpdatePost,
 };

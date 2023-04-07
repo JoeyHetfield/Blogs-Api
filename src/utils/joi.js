@@ -44,8 +44,25 @@ const validateUserCreate = (body) =>
     }),
   }).validate(body);
 
+  const validateBlogPostCreate = (body) =>
+  Joi.object({
+    title: Joi.string().required().messages({
+      'string.required': requiredField,
+      'string.empty': requiredField,
+    }),
+    content: Joi.string().required().messages({
+      'string.required': requiredField,
+      'string.empty': requiredField,
+    }),
+    categoryIds: Joi.array().items(Joi.number()).required().messages({
+      'array.required': requiredField,
+      'array.empty': requiredField,
+    }),
+  }).validate(body);
+
 module.exports = {
   validateUserCreate,
   validateLoginEnter,
   validateCategoryCreate,
+  validateBlogPostCreate,
 };

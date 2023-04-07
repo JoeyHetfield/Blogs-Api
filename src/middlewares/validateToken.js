@@ -6,7 +6,9 @@ const validateTokenMiddleware = async (req, res, next) => {
   
     if (!token) return res.status(401).json({ message: 'Token not found' });
   
-    validateToken(token);
+    const validatedToken = validateToken(token);
+
+    req.user = validatedToken;
 
     next();
   } catch (err) {

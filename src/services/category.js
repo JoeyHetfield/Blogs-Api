@@ -7,6 +7,13 @@ const createCategory = async (name) => {
   return category;
 };
 
+const getAllCategories = async () => {
+  const categories = await Category.findAll();
+  if (!categories) throw new ErrorFile('Categories not found', 404);
+  return categories;
+};
+
 module.exports = {
   createCategory,
+  getAllCategories,
 };

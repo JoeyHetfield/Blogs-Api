@@ -1,4 +1,4 @@
-const { BlogPost, Category, User, PostCategory } = require('../models');
+const { BlogPost, Category, User, PostCategory, Sequelize } = require('../models');
  const ErrorFile = require('../utils/ErrorFile');
 
 const createPost = async (title, content, userId, categoryIds) => {
@@ -76,10 +76,30 @@ const deletePost = async (id, userId) => {
   return { message: 'Post deleted' };
 };
 
+const findByTerm = async (term) => {
+  const posts = await BlogPost.findAll({
+    where: {
+      [Sequelize.Op.or]: [
+        { title: { [Sequelize.Op.substring]: term } },
+        { content: { [Sequelize.Op.substring]: term } },
+      ],
+    },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category,
+        as: 'categories',
+        through: { attributes: [] } },
+    ],
+  });
+  // if (!posts) throw new ErrorFile('Posts not found', 404);
+  return posts;
+};
+
 module.exports = {
   createPost,
   getAllPosts,
   getOnePost,
   updatePost,
   deletePost,
+  findByTerm,
 };

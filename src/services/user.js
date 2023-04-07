@@ -11,7 +11,17 @@ const createUser = async (displayName, email, password, image) => {
   const token = createToken({ id: user.id });
   return { token };
 };
+ 
+// Não podia mostrar password no final, https://sequelize.org/docs/v6/core-concepts/model-querying-basics/ ler mais depois
+const getAllUsers = async () => {
+  const users = await User.findAll({
+    attributes: { exclude: ['password'] },
+  });
+  if (!users) throw new ErrorFile('Users not found', 404);
+  return users;
+};
 
 module.exports = {
   createUser,
+  getAllUsers,
 };

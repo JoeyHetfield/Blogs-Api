@@ -36,7 +36,16 @@ const validateUserCreate = (body) =>
     }),
   }).validate(body);
 
+  const validateCategoryCreate = (body) =>
+  Joi.object({
+    name: Joi.string().required().messages({
+      'string.required': '"name" is required',
+      'string.empty': '"name" is required',
+    }),
+  }).validate(body);
+
 module.exports = {
   validateUserCreate,
   validateLoginEnter,
+  validateCategoryCreate,
 };

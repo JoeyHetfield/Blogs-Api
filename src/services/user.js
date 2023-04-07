@@ -4,7 +4,7 @@ const ErrorFile = require('../utils/ErrorFile');
 
 const createUser = async (displayName, email, password, image) => {
   const userExists = await User.findOne({ where: { email } });
-  if (userExists) throw new ErrorFile('Email already registered', 201);
+  if (userExists) throw new ErrorFile('User already registered', 409);
   
   const user = await User.create({ displayName, email, password, image });
   if (!user) throw new ErrorFile('Invalid fields', 400);

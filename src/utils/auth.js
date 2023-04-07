@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const ErrorFile = require('./ErrorFile');
 
 const secretKey = process.env.JWT_SECRET;
 
@@ -15,7 +14,6 @@ const createToken = (payload) => {
 };
 
 const validateToken = (token) => {
-  if (!token) throw new ErrorFile('Token não encontrado', 401);
   const isValid = jwt.verify(token, secretKey);
   return isValid;
 };

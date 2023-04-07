@@ -1,14 +1,17 @@
 const { validateToken } = require('../utils/auth');
-const ErrorFile = require('../utils/ErrorFile');
 
 const validateTokenMiddleware = async (req, res, next) => {
-  const token = req.headers.authorization;
+  try {
+    const token = req.headers.authorization;
+  
+    if (!token) return res.status(401).json({ message: 'Token not found' });
+  
+    validateToken(token);
 
-  if (!token) throw new ErrorFile('Token not found', 401);
-
-  validateToken(token);
-
-  next();
+    next();
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = validateTokenMiddleware;

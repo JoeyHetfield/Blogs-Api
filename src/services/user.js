@@ -30,8 +30,17 @@ const getOneUser = async (id) => {
   return user;
 };
 
-module.exports = {
+const deleteUser = async (id) => {
+  const user = await User.findOne({ where: { id } });
+
+  if (!user) throw new ErrorFile('User does not exist', 404);
+
+  await User.destroy({ where: { id } });
+};
+
+  module.exports = {
   createUser,
   getAllUsers,
   getOneUser,
+  deleteUser,
 };

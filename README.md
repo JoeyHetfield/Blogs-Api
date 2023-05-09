@@ -1,13 +1,24 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Blogs-Api
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+**This project was developed with the aim of building a Node.js application using Sequelize to create a CRUD for a blog, allowing users to create, edit, read, and delete posts.**
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+**Multiple endpoints were created to meet each requirement, following REST principles. A validation token was also implemented for the endpoints, ensuring that only a user who has been created can create a post, and only the user who created a post can update or delete it.**
+
+### Installation 
+
+- To install Blogs-Api, simply clone the repository:
+
+>    git clone git@github.com:JoeyHetfield/Blogs-Api.git
+
+- After cloning the repository, navigate to the project directory and install the necessary dependencies using npm:
+
+> npm install
+
+### Contributing
+**Contributions to Blogs-Api are welcome! If you would like to contribute, please follow these steps:**
+
+- Fork the repository.
+- Create a new branch.
+- Make your changes and commit them with descriptive commit messages.
+- Push your changes to your forked repository.
+- Submit a pull request with a description of your changes.
